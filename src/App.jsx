@@ -1,27 +1,47 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import HomePage from "./pages/front/HomePage";
-import AdminLayout from "./components/layout/admin";
-import DashboardPage from "./pages/admin/DashboardPage";
-import SkillsPage from "./pages/admin/SkillsPage";
-import UsersPage from "./pages/admin/UsersPage";
 import { useSelector } from "react-redux";
-import PortfoliosPage from "./pages/admin/PortfoliosPage";
+
+import { authName } from "./redux/slices/auth";
+import FrontLayout from "./components/layout/front";
+import HomePage from "./pages/public/home";
+import LoginPage from "./pages/public/login";
+import RegisterPage from "./pages/public/register";
+import AdminLayout from "./components/layout/admin";
+import DashboardPage from "./pages/admin/dashboard";
+import SkillsPage from "./pages/admin/skills";
+import ExperiencePage from "./pages/admin/experience";
+import PortfoliosPage from "./pages/admin/portfolios";
+import UsersPage from "./pages/admin/users";
+import EducationPage from "./pages/admin/education";
+import MessagesPage from "./pages/admin/messages";
 
 function App() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { isAuthenticated, user } = useSelector((state) => state[authName]);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        {isAuthenticated ? (
-          <Route path="/" element={<AdminLayout />}>
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="skills" element={<SkillsPage />} />
-            <Route path="portfolios" element={<PortfoliosPage />} />
-            <Route path="users" element={<UsersPage />} />
-          </Route>
-        ) : null}
-        <Route path="*" element={<Navigate to="/ " />} />
+        <Route element={<FrontLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
+        <Route
+          element={
+            isAuthenticated && user?.role === "admin" ? (
+              <AdminLayout />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        >
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="/education" element={<EducationPage />} />
+          <Route path="/portfolios" element={<PortfoliosPage />} />
+          <Route path="/experience" element={<ExperiencePage />} />
+          <Route path="/users" element={<UsersPage />} />
+          <Route path="/messages" element={<MessagesPage />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,13 +1,9 @@
 import axios from "axios";
-import { ENDPOINT, TOKEN } from "../constants";
 import Cookies from "js-cookie";
+import { TOKEN } from "../constants";
 
-const request = axios.create({
-  baseURL: `${ENDPOINT}api/v1`,
+export const request = axios.create({
+  baseURL: "https://ap-portfolio-backend.up.railway.app/api/v1",
   timeout: 10000,
-  headers: {
-    Authorization: `Bearer ${Cookies.get(TOKEN)}`,
-  },
+  headers: { Authorization: `Bearer ${Cookies.get(TOKEN)}` },
 });
-
-export default request;

@@ -1,31 +1,31 @@
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../../../context/AuthContext";
+import { Link } from "react-router-dom";
+
+import "./Header.scss";
+import useScreenSize from "../../../utils/screenSize";
 
 const Header = () => {
-  const { isAuthenticated } = useContext(AuthContext);
+  const screenSize = useScreenSize();
   return (
     <header>
-      <div
-        className="container"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        {isAuthenticated ? (
-          <NavLink to="/my-blogs">My blogs</NavLink>
-        ) : (
-          <NavLink to="/">Logo</NavLink>
-        )}
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/category">Category</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/blogs">Blogs</NavLink>
-        <NavLink to="/register">Register</NavLink>
-        {isAuthenticated ? (
-          <NavLink to="/account">Account</NavLink>
-        ) : (
-          <NavLink to="/login">Login</NavLink>
-        )}
-      </div>
+      <nav className="nav">
+        <div className="container nav__container">
+          <Link to="/" className="nav__logo">
+            {screenSize > 450 ? "PTP Solutions" : "PTPs"}
+          </Link>
+          <ul className="nav__menu">
+            <li className="nav__item">
+              <Link className="nav__link" to="/login">
+                Login
+              </Link>
+            </li>
+            <li className="nav__item">
+              <Link className="nav__link" to="/register">
+                Register
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
   );
 };

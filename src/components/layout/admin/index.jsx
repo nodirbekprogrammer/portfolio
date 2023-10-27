@@ -1,49 +1,66 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import {
+  BookOutlined,
+  CheckSquareOutlined,
+  DashboardOutlined,
+  LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined,
-  DashboardOutlined,
+  MessageOutlined,
+  ReadOutlined,
   StarOutlined,
-  LoginOutlined,
-  BookOutlined,
+  TeamOutlined,
 } from "@ant-design/icons";
+import { Layout, Menu, Button, theme, Modal } from "antd";
+import useScreenSize from "../../../utils/screenSize";
 
 import "./style.scss";
-
-import { Layout, Menu, Button, theme } from "antd";
 import Cookies from "js-cookie";
-import { TOKEN } from "../../../constants";
-import { useDispatch } from "react-redux";
-import { controlAuthenticated } from "../../../redux/slices/authSlice";
-
-const { Header, Sider, Content } = Layout;
+import { TOKEN, USER } from "../../../constants";
+import { setAuth } from "../../../redux/slices/auth";
 
 const AdminLayout = () => {
-  const location = useLocation();
-  const dispatch = useDispatch();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
+  const screenSize = useScreenSize();
   const [collapsed, setCollapsed] = useState(false);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const { Header, Sider, Content } = Layout;
+
   const logout = () => {
     Cookies.remove(TOKEN);
-    dispatch(controlAuthenticated(false));
+    localStorage.removeItem(USER);
+    setAuth();
     navigate("/");
   };
 
+  useEffect(() => {
+    if (screenSize <= 650) {
+      setCollapsed(true);
+    } else {
+      setCollapsed(false);
+    }
+  }, [screenSize]);
+
   return (
-    <Layout className="admin-layout">
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="admin-logo">Portfolio Admin</div>
+    <Layout>
+      <Sider
+        className="dashboard-sider"
+        trigger={null}
+        collapsible
+        collapsed={collapsed}
+      >
+        <h3 className="dashboard-logo">{collapsed ? "NN" : "NN Dashboard"}</h3>
         <Menu
+          className="menu"
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={[location.pathname]}
+          defaultSelectedKeys={pathname}
           items={[
             {
               key: "/dashboard",
@@ -51,13 +68,8 @@ const AdminLayout = () => {
               label: <Link to="/dashboard">Dashboard</Link>,
             },
             {
-              key: "/skills",
-              icon: <StarOutlined />,
-              label: <Link to="/skills">Skills</Link>,
-            },
-            {
               key: "/users",
-              icon: <UserOutlined />,
+              icon: <TeamOutlined />,
               label: <Link to="/users">Users</Link>,
             },
             {
@@ -65,11 +77,40 @@ const AdminLayout = () => {
               icon: <BookOutlined />,
               label: <Link to="/portfolios">Portfolios</Link>,
             },
-
             {
-              icon: <LoginOutlined />,
+              key: "/education",
+              icon: <ReadOutlined />,
+              label: <Link to="/education">Education</Link>,
+            },
+            {
+              key: "/experience",
+              icon: <CheckSquareOutlined />,
+              label: <Link to="/experience">Experience</Link>,
+            },
+            {
+              key: "/skills",
+              icon: <StarOutlined />,
+              label: <Link to="/skills">Skills</Link>,
+            },
+            {
+              key: "/messages",
+              icon: <MessageOutlined />,
+              label: <Link to="/messages">Messages</Link>,
+            },
+            {
+              key: "4",
+              icon: <LogoutOutlined />,
               label: (
-                <Button danger type="primary" onClick={logout}>
+                <Button
+                  danger
+                  type="primary"
+                  onClick={() =>
+                    Modal.confirm({
+                      title: "Do you want to log out ?",
+                      onOk: () => logout(),
+                    })
+                  }
+                >
                   Logout
                 </Button>
               ),
@@ -79,6 +120,7 @@ const AdminLayout = () => {
       </Sider>
       <Layout>
         <Header
+          className="dashboard-header"
           style={{
             padding: 0,
             background: colorBgContainer,
@@ -96,9 +138,10 @@ const AdminLayout = () => {
           />
         </Header>
         <Content
+          className="dashboard-main"
           style={{
-            margin: "24px 16px",
             padding: 24,
+            margin: "24px 16px",
             minHeight: 280,
             background: colorBgContainer,
           }}
@@ -109,4 +152,5 @@ const AdminLayout = () => {
     </Layout>
   );
 };
+
 export default AdminLayout;

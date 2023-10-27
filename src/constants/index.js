@@ -1,3 +1,3 @@
 export const TOKEN = "PORTFOLIO_TOKEN";
-export const ENDPOINT = "https://ap-portfolio-backend.up.railway.app/";
+export const USER = "PORTFOLIO_USER";
 export const LIMIT = 10;

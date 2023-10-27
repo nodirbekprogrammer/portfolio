@@ -1,11 +1,26 @@
-.admin-layout {
-  height: 100vh;
-  .admin-logo {
+.dashboard-sider {
+  height: 100vh !important;
+  .dashboard-logo {
+    color: #fff;
     padding: 24px;
-    color: white;
+    font-size: 20px;
   }
-  .ant-layout-content {
-    height: calc(100vh - 64px);
-    overflow: auto;
+}
+
+
+.dashboard-main {
+  overflow: auto !important;
+  height: calc(100vh - 114px) !important;
+}
+
+.menu {
+  a {
+    font-family: "Poppins";
+    ::before {
+    }
+  }
+
+  a.active::before {
+    background-color: #001529 !important;
   }
 }
