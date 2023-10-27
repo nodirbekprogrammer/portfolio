@@ -53,7 +53,7 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input />
+            <Input placeholder="abdulaziz"/>
           </Form.Item>
 
           <Form.Item
@@ -66,7 +66,7 @@ const LoginPage = () => {
               },
             ]}
           >
-            <Input.Password />
+            <Input.Password placeholder="12345"/>
           </Form.Item>
 
           <Form.Item
