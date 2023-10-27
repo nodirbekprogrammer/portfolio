@@ -3,7 +3,7 @@ import "./style.scss";
 import { request } from "../../../server";
 import Cookies from "js-cookie";
 import { TOKEN, USER } from "../../../constants";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setAuth } from "../../../redux/slices/auth";
 
@@ -30,7 +30,7 @@ const LoginPage = () => {
   return (
     <section className="login">
       <div className="container">
-        <h2 className="login__title">Sign in</h2>
+        <h2 className="login__title">Log in</h2>
         <Form
           className="login-form"
           name="login"
@@ -80,16 +80,6 @@ const LoginPage = () => {
               Login
             </button>
           </Form.Item>
-          <div>
-            <div className="login__subinfo">
-              <p>Do not have an account yet? </p>
-              <Link to="/register">Register here</Link>
-            </div>
-            <div className="login__subinfo">
-              <p>Not ready yet ?</p>
-              <Link to="/">See our home page</Link>
-            </div>
-          </div>
         </Form>
       </div>
     </section>

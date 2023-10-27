@@ -8,29 +8,19 @@ const HomePage = () => {
       <div className="container">
         <div className="home-section">
           <div className="home-section__info">
-            <h2>Providing Industry Leading Solutions</h2>
+            <h2>Kelajagingizni biz bilan birga yarating</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Habitant
-              cras morbi hendrerit nunc vel sapien. In habitasse at diam
-              suspendisse non vitae fermentum, pharetra arcu. Viverra a morbi ut
-              donec in. Ac diam, at sed cras nisi.
+              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores
+              odio aspernatur debitis nulla quibusdam nostrum quidem veniam
+              placeat pariatur sed totam accusantium corrupti saepe, ex incidunt
+              facere commodi animi vero. Quas dolorum perspiciatis consectetur,
+              iusto quisquam nemo rem, voluptatibus exercitationem assumenda aut
+              veritatis praesentium fugiat expedita deleniti doloremque, amet
+              ipsum.
             </p>
           </div>
           <div className="home-section__img">
             <img src={homeMain} alt="home main" />
-          </div>
-        </div>
-        <div className="about-section">
-          <div className="about-section__left">
-            <h2>About Company</h2>
-          </div>
-          <div className="about-section__right">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget duis
-              mi nunc bibendum. Tellus elementum nec lorem eget dictumst. Risus
-              in gravida eu, enim lorem. Sed consequat ut suspendisse eros. Nunc
-              nunc accumsan, viverra enim. Mi.
-            </p>
           </div>
         </div>
       </div>

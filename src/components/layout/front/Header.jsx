@@ -10,7 +10,7 @@ const Header = () => {
       <nav className="nav">
         <div className="container nav__container">
           <Link to="/" className="nav__logo">
-            {screenSize > 450 ? "PTP Solutions" : "PTPs"}
+            {screenSize > 450 ? "Nodirbek Nu'monov" : "NN"}
           </Link>
           <ul className="nav__menu">
             <li className="nav__item">

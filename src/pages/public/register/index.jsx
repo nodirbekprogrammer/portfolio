@@ -95,16 +95,6 @@ const RegisterPage = () => {
               Register
             </button>
           </Form.Item>
-          <div>
-            <div className="register__subinfo">
-              <p>Already have an account ? </p>
-              <Link to="/login">Login here</Link>
-            </div>
-            <div className="register__subinfo">
-              <p>Not ready yet ?</p>
-              <Link to="/">See our home page</Link>
-            </div>
-          </div>
         </Form>
       </div>
     </section>
