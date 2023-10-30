@@ -135,7 +135,7 @@ const AdminLayout = () => {
               })
             }
           >
-            Upgrade
+            Client
           </Button>
         </Space>
       ),
