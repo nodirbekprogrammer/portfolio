@@ -13,6 +13,24 @@
   height: calc(100vh - 114px) !important;
 }
 
+.dashboard-header{
+  display: flex;
+  align-items: center;
+  .user{
+    flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h2{
+      margin-bottom: 0;
+    }
+    .ant-badge{
+      margin-right: 20px !important;
+      cursor: pointer;
+    }
+  }
+}
+
 .menu {
   a {
     font-family: 'Open Sans', sans-serif;

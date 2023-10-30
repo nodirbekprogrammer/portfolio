@@ -1,0 +1,18 @@
+export const userObj = {
+  firstName: "",
+  lastName: "",
+  username: "",
+  fields: [],
+  info: "",
+  photo: "",
+  phoneNumber: "",
+  birthday: "",
+  address: "",
+  email: "",
+  github: "",
+  linkedin: "",
+  telegram: "",
+  instagram: "",
+  youtube: "",
+  facebook: "",
+};
