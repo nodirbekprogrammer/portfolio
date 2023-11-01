@@ -1,0 +1,10 @@
+.user-account{
+  padding: 50px 100px !important;
+  .ant-tabs-nav-wrap{
+    .ant-tabs-nav-list{
+      display: grid;
+      grid-template-columns: auto auto;
+      width: 100%;
+    }
+  }
+}

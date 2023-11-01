@@ -2,10 +2,12 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { authName } from "./redux/slices/auth";
+
 import FrontLayout from "./components/layout/front";
 import HomePage from "./pages/public/home";
 import LoginPage from "./pages/public/login";
 import RegisterPage from "./pages/public/register";
+import UserAccount from "./pages/public/acoount";
 import AdminLayout from "./components/layout/admin";
 import DashboardPage from "./pages/admin/dashboard";
 import SkillsPage from "./pages/admin/skills";
@@ -24,6 +26,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/user-account" element={<UserAccount />} />  
         </Route>
         <Route
           element={

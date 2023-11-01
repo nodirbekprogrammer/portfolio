@@ -7,6 +7,7 @@ import educationReducer, { educationName } from "../slices/education";
 import portfolioQuery, { portfolioName, portfolioReducer } from "../queries/portfolio";
 import experienceQuery, { experienceName, experienceReducer } from "../queries/experience";
 import usersQuery, { usersName, usersReducer } from "../queries/users";
+import messageQuery, { messagesName, messagesReducer } from "../queries/messages";
 
 const reducer = {
   [authName]: authReducer,
@@ -15,12 +16,18 @@ const reducer = {
   [portfolioName]: portfolioReducer,
   [experienceName]: experienceReducer,
   [usersName]: usersReducer,
+  [messagesName]: messagesReducer,
 };
 
 const store = configureStore({
   reducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat([portfolioQuery.middleware, experienceQuery.middleware, usersQuery.middleware]),
+    getDefaultMiddleware().concat([
+      portfolioQuery.middleware,
+      experienceQuery.middleware,
+      usersQuery.middleware,
+      messageQuery.middleware,
+    ]),
 });
 
 const StoreProvider = ({ children }) => {

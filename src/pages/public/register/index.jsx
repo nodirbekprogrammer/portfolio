@@ -1,20 +1,34 @@
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 import { Form, Input, message } from "antd";
-import { request } from "../../../server";
-import { Link, useNavigate } from "react-router-dom";
 
+
+import { request } from "../../../server";
+import { setAuth } from "../../../redux/slices/auth";
+import { TOKEN, USER } from "../../../constants";
 import "./style.scss";
 
 const RegisterPage = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const login = async (values) => {
+
+  const register = async (values) => {
     try {
-      const { data } = await request.post("/auth/register", values);
-      console.log(data);
-      message.success("You are registrated successfully")
-      navigate("/login");
+      const {
+        data: { token, user },
+      } = await request.post("auth/register", values);
+
+      Cookies.set(TOKEN, token);
+      localStorage.setItem(USER, JSON.stringify(user));
+      request.defaults.headers.Authorization = `Bearer ${token}`;
+      navigate("/dashboard");
+      dispatch(setAuth(user));
+      message.success("You registered succesully!");
     } catch (error) {
       message.error(error.response.data.message);
     }
+    
   };
   return (
     <section className="register">
@@ -28,7 +42,7 @@ const RegisterPage = () => {
           wrapperCol={{
             span: 24,
           }}
-          onFinish={login}
+          onFinish={register}
           autoComplete="off"
         >
           <Form.Item>
